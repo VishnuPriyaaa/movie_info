@@ -1,6 +1,5 @@
 import React, {useCallback,useEffect,useState} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useLocation,useHistory } from 'react-router-dom';
 import MovieInfo from './MovieInfo';
 import MovieInfoBar from './MovieInfoBar';
 import Actor from './Actor';
@@ -35,7 +34,6 @@ const Movie = (queryParams) => {
           <Actor key={actor.credit_id} actor={actor} />
         ))}
     </Grid>
-     { console.log("ONDH")}
      {state.loading && <Spinner />}
     
     </>)

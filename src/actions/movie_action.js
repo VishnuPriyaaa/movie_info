@@ -15,7 +15,6 @@ function fetchData () {
 
 
 function loadMoreData (...args) {
-    console.log("ARG"+args)
     let url;
     if(args.length > 1) {
         url = `${SEARCH_URL}${args[0]}&page=${args[1]+1}`;
@@ -44,10 +43,8 @@ function setCredData(data) {
     credData = data;}
 
 function fetchSearchData(val="",currentPage) {
-    console.log("FETCH")
     return dispatch => {
         const url = `${ val ? SEARCH_URL : MOVIES_URL}${val}&page=${currentPage || 1}`;
-        console.log("RU"+url)
         movieService.getMoviesBySearch(url)
         .then(
             data => dispatch(searchData(data)),
@@ -73,7 +70,6 @@ function sortByPopularity (currentPage) {
 function sortByRating (currentPage) {
     
         const sortURL =`${API_URL}discover/movie?sort_by=vote_average.desc&api_key=${API_KEY}&region=US&page=${currentPage ||1}&vote_count.gte=500`;
-        console.log("SORT_URL"+sortURL);
     return dispatch => {
         dispatch(request());
         movieService.getMoviesByRating(sortURL)
@@ -87,19 +83,16 @@ function sortByRating (currentPage) {
 
 
 function getMovieDetails (movieId) {
-    console.log("ID"+movieId)
     const url = `${API_URL}movie/${movieId}?api_key=${API_KEY}`;
     const detailsURL = `${API_URL}movie/${movieId}/credits?api_key=${API_KEY}`;
     
     return async dispatch => {
-        console.log("ccc"+JSON.stringify(detailsURL))
         dispatch(request());
         await movieService.getMovieDetails(detailsURL)
             .then(
                 data => setCredData(data),
                 error => dispatch(failure(error.toString()))
             );
-        console.log("D"+JSON.stringify(credData))
         movieService.getMovieDetails(url)
             .then(
                 data => dispatch(detailsData({

@@ -10,7 +10,6 @@ import {StyledMovieInfo} from '../styles/StyledMovieInfo';
 const MovieInfo = ({movie}) => (
     
     <StyledMovieInfo backdrop={movie.backdrop_path}>
-        {movie?console.log("MOV"+JSON.stringify(movie.title)):""}
         <div className="movieinfo-content">
             <div className="movieinfo-thumb">
                <MovieThumb

@@ -14,7 +14,6 @@ const moviesInitialState = {
           ...state,
           loading: true
         }
-        console.log("STATE"+JSON.stringify(t))
         return {
           ...state,
           loading: true
@@ -48,7 +47,6 @@ const moviesInitialState = {
           movies:action.data.results
         };
         case types.LOAD_MORE_MOVIES:
-          console.log("hhh")
           const dat = {
             error: null,
             loading: false,
@@ -57,7 +55,6 @@ const moviesInitialState = {
             movies:[...state.movies,...action.data.results]
           }
 
-          console.log("DAT"+dat);
         return {
           error: null,
           loading: false,
@@ -92,7 +89,6 @@ const moviesInitialState = {
           movies:action.data
           
         }
-        console.log("JJ"+JSON.stringify(action));
         return {
           error: null,
           loading: false,
