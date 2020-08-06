@@ -1,9 +1,8 @@
-import React, {useState, useRef, useEffect} from 'react';
+import React, {useState, useRef} from 'react';
 import {StyledSearchBar, StyledSearchBarContent} from '../styles/StyledSearchBar';
 import FontAwesome from 'react-fontawesome';
 const SearchBar = ({ callback }) => {
  
-    let inputValue;
     const [state,setState] = useState( '');
     const timeOut = useRef(null);
 

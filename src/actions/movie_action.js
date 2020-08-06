@@ -23,7 +23,7 @@ function loadMoreData (...args) {
     }
     return dispatch => {
         dispatch(request());
-        movieService.loadMoreData(url)
+        movieService.getData(url)
             .then(
                 data => dispatch(loadData(data)),
                 error => dispatch(failure(error.toString()))
@@ -45,7 +45,7 @@ function setCredData(data) {
 function fetchSearchData(val="",currentPage) {
     return dispatch => {
         const url = `${ val ? SEARCH_URL : MOVIES_URL}${val}&page=${currentPage || 1}`;
-        movieService.getMoviesBySearch(url)
+        movieService.getData(url)
         .then(
             data => dispatch(searchData(data)),
             error => dispatch(failure(error.toString()))
@@ -59,7 +59,7 @@ function sortByPopularity (currentPage) {
            & page=${currentPage || 1}`
     return dispatch => {
         dispatch(request());
-        movieService.getMoviesByPopularity(sortURL)
+        movieService.getData(sortURL)
             .then(
                 data => dispatch(success(data)),
                 error => dispatch(failure(error.toString()))
@@ -72,7 +72,7 @@ function sortByRating (currentPage) {
         const sortURL =`${API_URL}discover/movie?sort_by=vote_average.desc&api_key=${API_KEY}&region=US&page=${currentPage ||1}&vote_count.gte=500`;
     return dispatch => {
         dispatch(request());
-        movieService.getMoviesByRating(sortURL)
+        movieService.getData(sortURL)
             .then(
                 data => dispatch(success(data)),
                 error => dispatch(failure(error.toString()))
@@ -88,12 +88,12 @@ function getMovieDetails (movieId) {
     
     return async dispatch => {
         dispatch(request());
-        await movieService.getMovieDetails(detailsURL)
+        await movieService.getData(detailsURL)
             .then(
                 data => setCredData(data),
                 error => dispatch(failure(error.toString()))
             );
-        movieService.getMovieDetails(url)
+        movieService.getData(url)
             .then(
                 data => dispatch(detailsData({
                     ...data,

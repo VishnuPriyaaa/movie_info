@@ -1,4 +1,4 @@
-import React, {useCallback,useEffect,useState} from 'react';
+import React,{useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import MovieInfo from './MovieInfo';
 import MovieInfoBar from './MovieInfoBar';
